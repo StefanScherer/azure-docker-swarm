@@ -49,7 +49,7 @@ terraform apply
 If you want multiple machines, increase the count
 
 ```
-terraform apply -var 'count={ windows=3 linux=3 }'
+terraform apply -var 'count={ windows_workers=3 linux_workers=3 }'
 ```
 
 Notice: Changing the count afterwards doesn't seem to work with Azure. So be sure to create the resource group with the correct count initially.
