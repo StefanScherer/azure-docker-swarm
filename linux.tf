@@ -72,11 +72,12 @@ resource "azurerm_virtual_machine" "linux" {
       type = "ssh"
       user = "${var.admin_username}"
       password = "${var.admin_password}"
-      host = "${var.dns_prefix}-lin-${format("%02d", count.index + 1)}"
+      host = "${var.dns_prefix}-lin-${format("%02d", count.index + 1)}.${var.location}.${var.azure_dns_suffix}"
     }
 
     inline = [
       "curl -sSL https://raw.githubusercontent.com/StefanScherer/docker-init/master/ubuntu/install-docker-ce.sh | VERSION=test sh"
+      "sudo adduser ${var.admin_username} docker"
     ]
   }
 }
