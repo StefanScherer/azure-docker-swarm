@@ -76,7 +76,7 @@ resource "azurerm_virtual_machine" "linux" {
     }
 
     inline = [
-      "curl -sSL https://raw.githubusercontent.com/StefanScherer/docker-init/master/ubuntu/install-docker-ce.sh | VERSION=test sh"
+      "curl -sSL https://raw.githubusercontent.com/StefanScherer/docker-init/master/ubuntu/install-docker-ce.sh | CHANNEL=test sh"
       "sudo adduser ${var.admin_username} docker"
     ]
   }
