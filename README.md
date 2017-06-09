@@ -3,7 +3,6 @@
 Build a cross-platform Linux and Windows Docker Swarm in Azure with Terraform.
 
 ## Install Terraform
-
 ```
 brew install terraform
 ```
@@ -49,7 +48,7 @@ terraform apply
 If you want multiple machines, increase the count of the workers
 
 ```
-terraform apply -var 'count={ windows_workers=3 linux_workers=3 }'
+terraform apply -var 'count={ windows_workers=2 linux_workers=2 }' -var dns_prefix=mix -var account=mix -var admin_username=$USER -var admin_password=Passw0rd1234
 ```
 
 Notice: Changing the count afterwards doesn't seem to work with Azure. So be sure to create the resource group with the correct count initially.

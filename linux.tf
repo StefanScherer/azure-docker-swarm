@@ -53,7 +53,7 @@ resource "azurerm_virtual_machine" "linux" {
   }
 
   os_profile {
-    computer_name = "${var.dns_prefix}-lin-${format("%02d", count.index + 1)}"
+    computer_name = "lin-${format("%02d", count.index + 1)}"
     admin_username = "${var.admin_username}"
     admin_password = "${var.admin_password}"
   }
@@ -76,7 +76,7 @@ resource "azurerm_virtual_machine" "linux" {
     }
 
     inline = [
-      "curl -sSL https://raw.githubusercontent.com/StefanScherer/docker-init/master/ubuntu/install-docker-ce.sh | CHANNEL=test sh"
+      "curl -sSL https://raw.githubusercontent.com/StefanScherer/docker-init/master/ubuntu/install-docker-ce.sh | CHANNEL=test sh",
       "sudo adduser ${var.admin_username} docker"
     ]
   }

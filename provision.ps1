@@ -1,7 +1,9 @@
 Start-Transcript -Path C:\provision.log
 
+$ProgressPreference = 'SilentlyContinue'
+
 Write-Host "provision.ps1"
-Write-Host "HostName = $($HostName)"
+Write-Host "FQDN = $($FQDN)"
 
 Write-Host Windows Updates to manual
 Cscript $env:WinDir\System32\SCregEdit.wsf /AU 1
