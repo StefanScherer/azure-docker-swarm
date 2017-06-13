@@ -33,7 +33,7 @@ if ($service) {
     Write-Output '--Stopping Docker Windows service'
     Stop-Service docker
 }
-$version = "17.06.0-ce-rc2"
+$version = "17.06.0-ce-rc3"
 $downloadUrl = "https://download.docker.com/win/static/test/x86_64/docker-$version-x86_64.zip"
 $outFilePath = "$env:TEMP\docker.zip"
 Write-Output "--Downloading: $downloadUrl"
