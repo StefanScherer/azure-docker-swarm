@@ -34,7 +34,7 @@ if ($service) {
     Stop-Service docker
 }
 $version = "17.06.0-ce-rc4"
-$downloadUrl = "https://download.docker.com/win/static/test/x86_64/docker-$version-x86_64.zip"
+$downloadUrl = "https://download.docker.com/win/static/test/x86_64/docker-$version.zip"
 $outFilePath = "$env:TEMP\docker.zip"
 Write-Output "--Downloading: $downloadUrl"
 Invoke-WebRequest -UseBasicParsing -OutFile $outFilePath -Uri $downloadUrl
