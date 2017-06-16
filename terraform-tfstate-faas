@@ -1,0 +1,398 @@
+{
+    "version": 3,
+    "terraform_version": "0.9.6",
+    "serial": 0,
+    "lineage": "3e064027-a562-49a1-b921-dfb39408bd17",
+    "modules": [
+        {
+            "path": [
+                "root"
+            ],
+            "outputs": {},
+            "resources": {
+                "azurerm_network_interface.linux": {
+                    "type": "azurerm_network_interface",
+                    "depends_on": [
+                        "azurerm_public_ip.linux.*",
+                        "azurerm_resource_group.global",
+                        "azurerm_subnet.swarm"
+                    ],
+                    "primary": {
+                        "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/networkInterfaces/linux-01-nic",
+                        "attributes": {
+                            "applied_dns_servers.#": "0",
+                            "dns_servers.#": "0",
+                            "enable_ip_forwarding": "false",
+                            "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/networkInterfaces/linux-01-nic",
+                            "ip_configuration.#": "1",
+                            "ip_configuration.111125200.load_balancer_backend_address_pools_ids.#": "0",
+                            "ip_configuration.111125200.load_balancer_inbound_nat_rules_ids.#": "0",
+                            "ip_configuration.111125200.name": "testconfiguration1",
+                            "ip_configuration.111125200.private_ip_address": "",
+                            "ip_configuration.111125200.private_ip_address_allocation": "dynamic",
+                            "ip_configuration.111125200.public_ip_address_id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/publicIPAddresses/linux-01-publicip",
+                            "ip_configuration.111125200.subnet_id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/virtualNetworks/swarm-virtnet/subnets/swarm-01-sn",
+                            "location": "westeurope",
+                            "name": "linux-01-nic",
+                            "private_ip_address": "10.0.2.4",
+                            "resource_group_name": "faas",
+                            "tags.%": "0"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "azurerm_network_interface.windows": {
+                    "type": "azurerm_network_interface",
+                    "depends_on": [
+                        "azurerm_public_ip.windows.*",
+                        "azurerm_resource_group.global",
+                        "azurerm_subnet.swarm"
+                    ],
+                    "primary": {
+                        "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/networkInterfaces/windows-01-nic",
+                        "attributes": {
+                            "applied_dns_servers.#": "0",
+                            "dns_servers.#": "0",
+                            "enable_ip_forwarding": "false",
+                            "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/networkInterfaces/windows-01-nic",
+                            "ip_configuration.#": "1",
+                            "ip_configuration.967397803.load_balancer_backend_address_pools_ids.#": "0",
+                            "ip_configuration.967397803.load_balancer_inbound_nat_rules_ids.#": "0",
+                            "ip_configuration.967397803.name": "testconfiguration1",
+                            "ip_configuration.967397803.private_ip_address": "",
+                            "ip_configuration.967397803.private_ip_address_allocation": "dynamic",
+                            "ip_configuration.967397803.public_ip_address_id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/publicIPAddresses/windows-01-publicip",
+                            "ip_configuration.967397803.subnet_id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/virtualNetworks/swarm-virtnet/subnets/swarm-01-sn",
+                            "location": "westeurope",
+                            "name": "windows-01-nic",
+                            "private_ip_address": "10.0.2.5",
+                            "resource_group_name": "faas",
+                            "tags.%": "0"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "azurerm_public_ip.linux": {
+                    "type": "azurerm_public_ip",
+                    "depends_on": [
+                        "azurerm_resource_group.global"
+                    ],
+                    "primary": {
+                        "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/publicIPAddresses/linux-01-publicip",
+                        "attributes": {
+                            "domain_name_label": "faas-lin-01",
+                            "fqdn": "faas-lin-01.westeurope.cloudapp.azure.com",
+                            "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/publicIPAddresses/linux-01-publicip",
+                            "idle_timeout_in_minutes": "30",
+                            "ip_address": "13.95.236.247",
+                            "location": "westeurope",
+                            "name": "linux-01-publicip",
+                            "public_ip_address_allocation": "static",
+                            "resource_group_name": "faas",
+                            "tags.%": "0"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "azurerm_public_ip.windows": {
+                    "type": "azurerm_public_ip",
+                    "depends_on": [
+                        "azurerm_resource_group.global"
+                    ],
+                    "primary": {
+                        "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/publicIPAddresses/windows-01-publicip",
+                        "attributes": {
+                            "domain_name_label": "faas-win-01",
+                            "fqdn": "faas-win-01.westeurope.cloudapp.azure.com",
+                            "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/publicIPAddresses/windows-01-publicip",
+                            "idle_timeout_in_minutes": "30",
+                            "ip_address": "13.93.53.172",
+                            "location": "westeurope",
+                            "name": "windows-01-publicip",
+                            "public_ip_address_allocation": "static",
+                            "resource_group_name": "faas",
+                            "tags.%": "0"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "azurerm_resource_group.global": {
+                    "type": "azurerm_resource_group",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas",
+                        "attributes": {
+                            "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas",
+                            "location": "westeurope",
+                            "name": "faas",
+                            "tags.%": "0"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "azurerm_storage_account.global": {
+                    "type": "azurerm_storage_account",
+                    "depends_on": [
+                        "azurerm_resource_group.global"
+                    ],
+                    "primary": {
+                        "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Storage/storageAccounts/faas",
+                        "attributes": {
+                            "account_kind": "Storage",
+                            "account_type": "Standard_LRS",
+                            "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Storage/storageAccounts/faas",
+                            "location": "westeurope",
+                            "name": "faas",
+                            "primary_access_key": "nN6cAOXaRS7qePl67x4tFYc7iGaQ8iU53MsjrTgy9+raeORgR5+PC5geefYR2ZL61CY7NKv1x8iN6rNoJbo2mA==",
+                            "primary_blob_endpoint": "https://faas.blob.core.windows.net/",
+                            "primary_file_endpoint": "https://faas.file.core.windows.net/",
+                            "primary_location": "westeurope",
+                            "primary_queue_endpoint": "https://faas.queue.core.windows.net/",
+                            "primary_table_endpoint": "https://faas.table.core.windows.net/",
+                            "resource_group_name": "faas",
+                            "secondary_access_key": "+eDe3d7EO69BRF/YYSTUIjE92nH6bo/YOlPhT5qjHZGlgFcQGHp+gPDbN3b2IulTAbimD0ecogzx63P+JIqK/Q==",
+                            "secondary_location": "",
+                            "tags.%": "0"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "azurerm_storage_container.linux": {
+                    "type": "azurerm_storage_container",
+                    "depends_on": [
+                        "azurerm_resource_group.global",
+                        "azurerm_storage_account.global"
+                    ],
+                    "primary": {
+                        "id": "linux-01-storage",
+                        "attributes": {
+                            "container_access_type": "private",
+                            "id": "linux-01-storage",
+                            "name": "linux-01-storage",
+                            "properties.%": "4",
+                            "properties.last_modified": "Mon, 12 Jun 2017 15:48:25 GMT",
+                            "properties.lease_duration": "",
+                            "properties.lease_state": "available",
+                            "properties.lease_status": "unlocked",
+                            "resource_group_name": "faas",
+                            "storage_account_name": "faas"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "azurerm_storage_container.windows": {
+                    "type": "azurerm_storage_container",
+                    "depends_on": [
+                        "azurerm_resource_group.global",
+                        "azurerm_storage_account.global"
+                    ],
+                    "primary": {
+                        "id": "windows-01-storage",
+                        "attributes": {
+                            "container_access_type": "private",
+                            "id": "windows-01-storage",
+                            "name": "windows-01-storage",
+                            "properties.%": "4",
+                            "properties.last_modified": "Mon, 12 Jun 2017 15:48:25 GMT",
+                            "properties.lease_duration": "",
+                            "properties.lease_state": "available",
+                            "properties.lease_status": "unlocked",
+                            "resource_group_name": "faas",
+                            "storage_account_name": "faas"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "azurerm_subnet.swarm": {
+                    "type": "azurerm_subnet",
+                    "depends_on": [
+                        "azurerm_resource_group.global",
+                        "azurerm_virtual_network.swarm"
+                    ],
+                    "primary": {
+                        "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/virtualNetworks/swarm-virtnet/subnets/swarm-01-sn",
+                        "attributes": {
+                            "address_prefix": "10.0.2.0/24",
+                            "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/virtualNetworks/swarm-virtnet/subnets/swarm-01-sn",
+                            "ip_configurations.#": "0",
+                            "name": "swarm-01-sn",
+                            "resource_group_name": "faas",
+                            "virtual_network_name": "swarm-virtnet"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "azurerm_virtual_machine.linux": {
+                    "type": "azurerm_virtual_machine",
+                    "depends_on": [
+                        "azurerm_network_interface.linux.*",
+                        "azurerm_resource_group.global",
+                        "azurerm_storage_account.global",
+                        "azurerm_storage_container.linux.*"
+                    ],
+                    "primary": {
+                        "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Compute/virtualMachines/linux-01-vm",
+                        "attributes": {
+                            "delete_data_disks_on_termination": "false",
+                            "delete_os_disk_on_termination": "false",
+                            "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Compute/virtualMachines/linux-01-vm",
+                            "location": "westeurope",
+                            "name": "linux-01-vm",
+                            "network_interface_ids.#": "1",
+                            "network_interface_ids.195969891": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/networkInterfaces/linux-01-nic",
+                            "os_profile.#": "1",
+                            "os_profile.1014252306.admin_password": "",
+                            "os_profile.1014252306.admin_username": "alex",
+                            "os_profile.1014252306.computer_name": "lin-01",
+                            "os_profile.1014252306.custom_data": "",
+                            "os_profile_linux_config.#": "1",
+                            "os_profile_linux_config.2972667452.disable_password_authentication": "false",
+                            "os_profile_linux_config.2972667452.ssh_keys.#": "1",
+                            "os_profile_linux_config.2972667452.ssh_keys.0.key_data": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC87nvCwiQHNYpCP+20Sk6VDpmAzHU61qkihOXZm5X98iGQU/lxBzFCYIlsIUzfdDZAEB8xjEuuNjR4AXBB0SWD67C6ez40keGe0xo7dYRaMRM/p4wU8WYedxU9y7KLWU3MK+6K8EtJUTqkVQ/OGzViAEfTACheJRwsCdu7LWju1XjeK/SdFijRoN8FE2UModLyUnwdgTQNc6xQZq0Qz+Yt9EpHeNI8MgezXb+lGWJ/OAoPg5uqpAyfBZwlo2r+efKmSdY/48T3gIZxkHdatTZ2qbQ7DZef/7nYz+TH957LxepdPawLWngtYBUuDbvV3bBudaKtQc2oGbvuz3YRmWNN",
+                            "os_profile_linux_config.2972667452.ssh_keys.0.path": "/home/alex/.ssh/authorized_keys",
+                            "os_profile_secrets.#": "0",
+                            "resource_group_name": "faas",
+                            "storage_data_disk.#": "0",
+                            "storage_image_reference.#": "1",
+                            "storage_image_reference.1222634046.offer": "UbuntuServer",
+                            "storage_image_reference.1222634046.publisher": "Canonical",
+                            "storage_image_reference.1222634046.sku": "16.04-LTS",
+                            "storage_image_reference.1222634046.version": "latest",
+                            "storage_os_disk.#": "1",
+                            "storage_os_disk.1119452025.caching": "ReadWrite",
+                            "storage_os_disk.1119452025.create_option": "FromImage",
+                            "storage_os_disk.1119452025.disk_size_gb": "0",
+                            "storage_os_disk.1119452025.image_uri": "",
+                            "storage_os_disk.1119452025.managed_disk_id": "",
+                            "storage_os_disk.1119452025.managed_disk_type": "",
+                            "storage_os_disk.1119452025.name": "linux-01-osdisk",
+                            "storage_os_disk.1119452025.os_type": "",
+                            "storage_os_disk.1119452025.vhd_uri": "https://faas.blob.core.windows.net/linux-01-storage/disk1.vhd",
+                            "tags.%": "0",
+                            "vm_size": "Standard_D2_v2"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "azurerm_virtual_machine.windows": {
+                    "type": "azurerm_virtual_machine",
+                    "depends_on": [
+                        "azurerm_network_interface.windows.*",
+                        "azurerm_resource_group.global",
+                        "azurerm_storage_account.global",
+                        "azurerm_storage_container.windows.*"
+                    ],
+                    "primary": {
+                        "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Compute/virtualMachines/windows-01-vm",
+                        "attributes": {
+                            "delete_data_disks_on_termination": "false",
+                            "delete_os_disk_on_termination": "false",
+                            "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Compute/virtualMachines/windows-01-vm",
+                            "location": "westeurope",
+                            "name": "windows-01-vm",
+                            "network_interface_ids.#": "1",
+                            "network_interface_ids.4201495090": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/networkInterfaces/windows-01-nic",
+                            "os_profile.#": "1",
+                            "os_profile.1504545574.admin_password": "",
+                            "os_profile.1504545574.admin_username": "alex",
+                            "os_profile.1504545574.computer_name": "win-01",
+                            "os_profile.1504545574.custom_data": "UGFyYW0oJEZRRE4gPSAiZmFhcy13aW4tMDEud2VzdGV1cm9wZS5jbG91ZGFwcC5henVyZS5jb20iKSBTdGFydC1UcmFuc2NyaXB0IC1QYXRoIEM6XHByb3Zpc2lvbi5sb2cKCiRQcm9ncmVzc1ByZWZlcmVuY2UgPSAnU2lsZW50bHlDb250aW51ZScKCldyaXRlLUhvc3QgInByb3Zpc2lvbi5wczEiCldyaXRlLUhvc3QgIkZRRE4gPSAkKCRGUUROKSIKCldyaXRlLUhvc3QgV2luZG93cyBVcGRhdGVzIHRvIG1hbnVhbApDc2NyaXB0ICRlbnY6V2luRGlyXFN5c3RlbTMyXFNDcmVnRWRpdC53c2YgL0FVIDEKTmV0IHN0b3Agd3VhdXNlcnYKTmV0IHN0YXJ0IHd1YXVzZXJ2CgpXcml0ZS1Ib3N0IERpc2FibGUgV2luZG93cyBEZWZlbmRlcgpTZXQtTXBQcmVmZXJlbmNlIC1EaXNhYmxlUmVhbHRpbWVNb25pdG9yaW5nICR0cnVlCgpXcml0ZS1Ib3N0IERvIG5vdCBvcGVuIFNlcnZlciBNYW5hZ2VyIGF0IGxvZ29uCk5ldy1JdGVtUHJvcGVydHkgLVBhdGggSEtDVTpcU29mdHdhcmVcTWljcm9zb2Z0XFNlcnZlck1hbmFnZXIgLU5hbWUgRG9Ob3RPcGVuU2VydmVyTWFuYWdlckF0TG9nb24gLVByb3BlcnR5VHlwZSBEV09SRCAtVmFsdWUgIjEiIC1Gb3JjZQoKV3JpdGUtSG9zdCBQdWxsaW5nIGxhdGVzdCBpbWFnZXMKZG9ja2VyIHB1bGwgbWljcm9zb2Z0L3dpbmRvd3NzZXJ2ZXJjb3JlCmRvY2tlciBwdWxsIG1pY3Jvc29mdC9uYW5vc2VydmVyCgpXcml0ZS1Ib3N0IE9wZW4gU3dhcm0tbW9kZSBwb3J0cwomIG5ldHNoIGFkdmZpcmV3YWxsIGZpcmV3YWxsIGFkZCBydWxlIG5hbWU9IkRvY2tlciBzd2FybS1tb2RlIGNsdXN0ZXIgbWFuYWdlbWVudCBUQ1AiIGRpcj1pbiBhY3Rpb249YWxsb3cgcHJvdG9jb2w9VENQIGxvY2FscG9ydD0yMzc3CiYgbmV0c2ggYWR2ZmlyZXdhbGwgZmlyZXdhbGwgYWRkIHJ1bGUgbmFtZT0iRG9ja2VyIHN3YXJtLW1vZGUgbm9kZSBjb21tdW5pY2F0aW9uIFRDUCIgZGlyPWluIGFjdGlvbj1hbGxvdyBwcm90b2NvbD1UQ1AgbG9jYWxwb3J0PTc5NDYKJiBuZXRzaCBhZHZmaXJld2FsbCBmaXJld2FsbCBhZGQgcnVsZSBuYW1lPSJEb2NrZXIgc3dhcm0tbW9kZSBub2RlIGNvbW11bmljYXRpb24gVURQIiBkaXI9aW4gYWN0aW9uPWFsbG93IHByb3RvY29sPVVEUCBsb2NhbHBvcnQ9Nzk0NgomIG5ldHNoIGFkdmZpcmV3YWxsIGZpcmV3YWxsIGFkZCBydWxlIG5hbWU9IkRvY2tlciBzd2FybS1tb2RlIG92ZXJsYXkgbmV0d29yayBVRFAiIGRpcj1pbiBhY3Rpb249YWxsb3cgcHJvdG9jb2w9VURQIGxvY2FscG9ydD00Nzg5CgpXcml0ZS1Ib3N0IFVwZGF0ZSBEb2NrZXIKIyBJbnN0YWxsLVBhY2thZ2UgLU5hbWUgZG9ja2VyIC1Qcm92aWRlck5hbWUgRG9ja2VyTXNmdFByb3ZpZGVyIC1WZXJib3NlIC1VcGRhdGUgLUZvcmNlCiRzZXJ2aWNlID0gR2V0LVNlcnZpY2UgJ2RvY2tlcicgLUVycm9yQWN0aW9uIFNpbGVudGx5Q29udGludWUKaWYgKCRzZXJ2aWNlKSB7CiAgICBXcml0ZS1PdXRwdXQgJy0tU3RvcHBpbmcgRG9ja2VyIFdpbmRvd3Mgc2VydmljZScKICAgIFN0b3AtU2VydmljZSBkb2NrZXIKfQokdmVyc2lvbiA9ICIxNy4wNi4wLWNlLXJjMiIKJGRvd25sb2FkVXJsID0gImh0dHBzOi8vZG93bmxvYWQuZG9ja2VyLmNvbS93aW4vc3RhdGljL3Rlc3QveDg2XzY0L2RvY2tlci0kdmVyc2lvbi14ODZfNjQuemlwIgokb3V0RmlsZVBhdGggPSAiJGVudjpURU1QXGRvY2tlci56aXAiCldyaXRlLU91dHB1dCAiLS1Eb3dubG9hZGluZzogJGRvd25sb2FkVXJsIgpJbnZva2UtV2ViUmVxdWVzdCAtVXNlQmFzaWNQYXJzaW5nIC1PdXRGaWxlICRvdXRGaWxlUGF0aCAtVXJpICRkb3dubG9hZFVybApFeHBhbmQtQXJjaGl2ZSAtUGF0aCAkb3V0RmlsZVBhdGggLURlc3RpbmF0aW9uUGF0aCAkZW52OlByb2dyYW1GaWxlcyAtRm9yY2UKUmVtb3ZlLUl0ZW0gJG91dEZpbGVQYXRoClN0YXJ0LVNlcnZpY2UgZG9ja2VyCgpXcml0ZS1Ib3N0IERpc2FibGUgYXV0b2xvZ29uCk5ldy1JdGVtUHJvcGVydHkgLVBhdGggIkhLQ1U6XFNvZnR3YXJlXE1pY3Jvc29mdFxXaW5kb3dzIE5UXEN1cnJlbnRWZXJzaW9uXFdpbmxvZ29uIiAtTmFtZSBBdXRvQWRtaW5Mb2dvbiAtUHJvcGVydHlUeXBlIERXT1JEIC1WYWx1ZSAiMCIgLUZvcmNlCgpXcml0ZS1Ib3N0IENsZWFuaW5nIHVwClJlbW92ZS1JdGVtIEM6XHByb3Zpc2lvbi5wczEK",
+                            "os_profile_secrets.#": "0",
+                            "os_profile_windows_config.#": "1",
+                            "os_profile_windows_config.2256145325.additional_unattend_config.#": "2",
+                            "os_profile_windows_config.2256145325.additional_unattend_config.0.component": "Microsoft-Windows-Shell-Setup",
+                            "os_profile_windows_config.2256145325.additional_unattend_config.0.content": "",
+                            "os_profile_windows_config.2256145325.additional_unattend_config.0.pass": "oobeSystem",
+                            "os_profile_windows_config.2256145325.additional_unattend_config.0.setting_name": "AutoLogon",
+                            "os_profile_windows_config.2256145325.additional_unattend_config.1.component": "Microsoft-Windows-Shell-Setup",
+                            "os_profile_windows_config.2256145325.additional_unattend_config.1.content": "",
+                            "os_profile_windows_config.2256145325.additional_unattend_config.1.pass": "oobeSystem",
+                            "os_profile_windows_config.2256145325.additional_unattend_config.1.setting_name": "FirstLogonCommands",
+                            "os_profile_windows_config.2256145325.enable_automatic_upgrades": "true",
+                            "os_profile_windows_config.2256145325.provision_vm_agent": "true",
+                            "os_profile_windows_config.2256145325.winrm.#": "0",
+                            "resource_group_name": "faas",
+                            "storage_data_disk.#": "0",
+                            "storage_image_reference.#": "1",
+                            "storage_image_reference.4254571467.offer": "WindowsServer",
+                            "storage_image_reference.4254571467.publisher": "MicrosoftWindowsServer",
+                            "storage_image_reference.4254571467.sku": "2016-Datacenter-with-Containers",
+                            "storage_image_reference.4254571467.version": "latest",
+                            "storage_os_disk.#": "1",
+                            "storage_os_disk.462278975.caching": "ReadWrite",
+                            "storage_os_disk.462278975.create_option": "FromImage",
+                            "storage_os_disk.462278975.disk_size_gb": "0",
+                            "storage_os_disk.462278975.image_uri": "",
+                            "storage_os_disk.462278975.managed_disk_id": "",
+                            "storage_os_disk.462278975.managed_disk_type": "",
+                            "storage_os_disk.462278975.name": "windows-01-osdisk",
+                            "storage_os_disk.462278975.os_type": "",
+                            "storage_os_disk.462278975.vhd_uri": "https://faas.blob.core.windows.net/windows-01-storage/disk1.vhd",
+                            "tags.%": "0",
+                            "vm_size": "Standard_D2_v2"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "azurerm_virtual_network.swarm": {
+                    "type": "azurerm_virtual_network",
+                    "depends_on": [
+                        "azurerm_resource_group.global"
+                    ],
+                    "primary": {
+                        "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/virtualNetworks/swarm-virtnet",
+                        "attributes": {
+                            "address_space.#": "1",
+                            "address_space.0": "10.0.0.0/16",
+                            "dns_servers.#": "0",
+                            "id": "/subscriptions/fd548f0f-749e-45b7-b2dc-1bfa705279a8/resourceGroups/faas/providers/Microsoft.Network/virtualNetworks/swarm-virtnet",
+                            "location": "westeurope",
+                            "name": "swarm-virtnet",
+                            "resource_group_name": "faas",
+                            "subnet.#": "0",
+                            "tags.%": "0"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        }
+    ]
+}
