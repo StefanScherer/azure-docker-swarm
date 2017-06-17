@@ -56,7 +56,7 @@ resource "azurerm_virtual_machine" "windows" {
     computer_name = "win-${format("%02d", count.index + 1)}"
     admin_username = "${var.admin_username}"
     admin_password = "${var.admin_password}"
-    custom_data = "${base64encode("Param($FQDN = \"${var.dns_prefix}-win-${format("%02d", count.index + 1)}.${var.location}.${var.azure_dns_suffix}\") ${file("./provision.ps1")}")}"
+    custom_data = "${base64encode("Param($FQDN = \"${var.dns_prefix}-win-${format("%02d", count.index + 1)}.${var.location}.${var.azure_dns_suffix}\", $sshKey = \"${var.ssh}\") ${file("./provision.ps1")}")}"
   }
 
   os_profile_windows_config {
