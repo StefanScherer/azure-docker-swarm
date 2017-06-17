@@ -1,11 +1,11 @@
 # Settings
 
 variable "account" {
-  default = "ads"
+  default = "swss"
 }
 
 variable "dns_prefix" {
-  default = "ads"
+  default = "swss"
 }
 
 variable "location" {
@@ -22,7 +22,7 @@ variable "admin_username" {
 }
 
 variable "admin_password" {
-  default = "Passw0rd1234!"
+  default = "k6VDpmAzHU61qkihOXZm5X98i"
 }
 
 variable "ssh" {
