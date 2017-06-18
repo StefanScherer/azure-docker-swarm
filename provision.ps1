@@ -16,15 +16,20 @@ Set-MpPreference -DisableRealtimeMonitoring $true
 Write-Host Do not open Server Manager at logon
 New-ItemProperty -Path HKCU:\Software\Microsoft\ServerManager -Name DoNotOpenServerManagerAtLogon -PropertyType DWORD -Value "1" -Force
 
+#Write-Host Set Azure internal network to private
+#Set-NetConnectionProfile -InterfaceAlias "Ethernet 3" -NetworkCategory Private
+#Write-Host Turn off firewall in private network
+#Set-NetFirewallProfile -Name Private -Enabled False
+
 #Write-Host Pulling latest images
 #docker pull microsoft/windowsservercore
 #docker pull microsoft/nanoserver
 
 Write-Host Open Swarm-mode ports
-& netsh advfirewall firewall add rule name="Docker swarm-mode cluster management TCP" dir=in action=allow protocol=TCP localport=2377
-& netsh advfirewall firewall add rule name="Docker swarm-mode node communication TCP" dir=in action=allow protocol=TCP localport=7946
-& netsh advfirewall firewall add rule name="Docker swarm-mode node communication UDP" dir=in action=allow protocol=UDP localport=7946
-& netsh advfirewall firewall add rule name="Docker swarm-mode overlay network UDP" dir=in action=allow protocol=UDP localport=4789
+New-NetFirewallRule -Protocol TCP -LocalPort 2377 -Direction Inbound -Action Allow -DisplayName "Docker swarm-mode cluster management TCP"
+New-NetFirewallRule -Protocol TCP -LocalPort 7946 -Direction Inbound -Action Allow -DisplayName "Docker swarm-mode node communication TCP"
+New-NetFirewallRule -Protocol UDP -LocalPort 7946 -Direction Inbound -Action Allow -DisplayName "Docker swarm-mode node communication TCP"
+New-NetFirewallRule -Protocol UDP -LocalPort 4789 -Direction Inbound -Action Allow -DisplayName "Docker swarm-mode overlay network UDP"
 
 Write-Host Update Docker
 # Install-Package -Name docker -ProviderName DockerMsftProvider -Verbose -Update -Force
