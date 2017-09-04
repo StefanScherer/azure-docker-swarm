@@ -21,9 +21,9 @@ New-ItemProperty -Path HKCU:\Software\Microsoft\ServerManager -Name DoNotOpenSer
 #Write-Host Turn off firewall in private network
 #Set-NetFirewallProfile -Name Private -Enabled False
 
-#Write-Host Pulling latest images
-#docker pull microsoft/windowsservercore
-#docker pull microsoft/nanoserver
+Write-Host Pulling latest images
+docker pull microsoft/windowsservercore
+docker pull microsoft/nanoserver
 
 Write-Host Open Swarm-mode ports
 New-NetFirewallRule -Protocol TCP -LocalPort 2377 -Direction Inbound -Action Allow -DisplayName "Docker swarm-mode cluster management TCP"
@@ -32,26 +32,26 @@ New-NetFirewallRule -Protocol UDP -LocalPort 7946 -Direction Inbound -Action All
 New-NetFirewallRule -Protocol UDP -LocalPort 4789 -Direction Inbound -Action Allow -DisplayName "Docker swarm-mode overlay network UDP"
 
 Write-Host Update Docker
-# Install-Package -Name docker -ProviderName DockerMsftProvider -Verbose -Update -Force
-$service = Get-Service 'docker' -ErrorAction SilentlyContinue
-if ($service) {
-    Write-Output '--Stopping Docker Windows service'
-    Stop-Service docker
-}
-$version = "17.06.0-ce-rc4"
-$downloadUrl = "https://download.docker.com/win/static/test/x86_64/docker-$version.zip"
-$outFilePath = "$env:TEMP\docker.zip"
-Write-Output "--Downloading: $downloadUrl"
-Invoke-WebRequest -UseBasicParsing -OutFile $outFilePath -Uri $downloadUrl
-Expand-Archive -Path $outFilePath -DestinationPath $env:ProgramFiles -Force
-Remove-Item $outFilePath
+Install-Package -Name docker -ProviderName DockerMsftProvider -Verbose -Update -Force
+#$service = Get-Service 'docker' -ErrorAction SilentlyContinue
+#if ($service) {
+#    Write-Output '--Stopping Docker Windows service'
+#    Stop-Service docker
+#}
+#$version = "17.07.0-ce"
+#$downloadUrl = "https://download.docker.com/win/static/edge/x86_64/docker-$version.zip"
+#$outFilePath = "$env:TEMP\docker.zip"
+#Write-Output "--Downloading: $downloadUrl"
+#Invoke-WebRequest -UseBasicParsing -OutFile $outFilePath -Uri $downloadUrl
+#Expand-Archive -Path $outFilePath -DestinationPath $env:ProgramFiles -Force
+#Remove-Item $outFilePath
 Start-Service docker
 
 Write-Host Disable autologon
 New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -PropertyType DWORD -Value "0" -Force
 
 Write-Host "Downloading OpenSSH"
-Invoke-WebRequest "https://github.com/PowerShell/Win32-OpenSSH/releases/download/v0.0.16.0/OpenSSH-Win64.zip" -OutFile OpenSSH-Win64.zip -UseBasicParsing
+Invoke-WebRequest "https://github.com/PowerShell/Win32-OpenSSH/releases/download/v0.0.19.0/OpenSSH-Win64.zip" -OutFile OpenSSH-Win64.zip -UseBasicParsing
 
 Write-Host "Expanding OpenSSH"
 Expand-Archive OpenSSH-Win64.zip C:\
