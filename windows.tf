@@ -39,9 +39,13 @@ resource "azurerm_virtual_machine" "windows" {
   vm_size = "${var.vm_size}"
 
   storage_image_reference {
+    # publisher = "MicrosoftWindowsServer"
+    # offer = "WindowsServer"
+    # sku = "2016-Datacenter-with-Containers"
+    # version = "latest"
     publisher = "MicrosoftWindowsServer"
-    offer = "WindowsServer"
-    sku = "2016-Datacenter-with-Containers"
+    offer = "WindowsServerSemiAnnual"
+    sku = "Datacenter-Core-1709-with-Containers-smalldisk"
     version = "latest"
   }
 

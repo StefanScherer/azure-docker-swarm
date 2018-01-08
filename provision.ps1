@@ -21,9 +21,21 @@ New-ItemProperty -Path HKCU:\Software\Microsoft\ServerManager -Name DoNotOpenSer
 #Write-Host Turn off firewall in private network
 #Set-NetFirewallProfile -Name Private -Enabled False
 
+# install Docker EE Preview
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+$docker_provider = "DockerProvider"
+$docker_version = "17.10.0-ee-preview-3"
+Write-Host "Install-Module $docker_provider ..."
+Install-Module -Name $docker_provider -Force
+Write-Host "Install-Package version $docker_version ..."
+Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
+$ErrorActionStop = 'SilentlyContinue'
+Install-Package -Name docker -ProviderName DockerProvider -RequiredVersion $docker_version -Force
+Set-PSRepository -InstallationPolicy Untrusted -Name PSGallery
+
 Write-Host Pulling latest images
-docker pull microsoft/windowsservercore
-docker pull microsoft/nanoserver
+docker pull microsoft/windowsservercore:1709
+docker pull microsoft/nanoserver:1709
 
 Write-Host Open Swarm-mode ports
 New-NetFirewallRule -Protocol TCP -LocalPort 2377 -Direction Inbound -Action Allow -DisplayName "Docker swarm-mode cluster management TCP"

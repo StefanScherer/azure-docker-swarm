@@ -76,7 +76,7 @@ resource "azurerm_virtual_machine" "linux" {
     }
 
     inline = [
-      "curl -sSL https://get.docker.com | CHANNEL=edge sh",
+      "curl -sSL https://get.docker.com | CHANNEL=stable sh",
       "sudo adduser ${var.admin_username} docker"
     ]
   }
