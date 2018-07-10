@@ -45,7 +45,7 @@ resource "azurerm_virtual_machine" "windows" {
     # version = "latest"
     publisher = "MicrosoftWindowsServer"
     offer = "WindowsServerSemiAnnual"
-    sku = "Datacenter-Core-1709-with-Containers-smalldisk"
+    sku = "Datacenter-Core-1803-with-Containers-smalldisk"
     version = "latest"
   }
 

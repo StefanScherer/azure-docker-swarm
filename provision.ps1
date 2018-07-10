@@ -23,19 +23,19 @@ New-ItemProperty -Path HKCU:\Software\Microsoft\ServerManager -Name DoNotOpenSer
 
 # install Docker EE Preview
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
-$docker_provider = "DockerProvider"
-$docker_version = "17.10.0-ee-preview-3"
+$docker_provider = "DockerMsftProvider"
+$docker_version = "18.03.1-ee-1"
 Write-Host "Install-Module $docker_provider ..."
 Install-Module -Name $docker_provider -Force
 Write-Host "Install-Package version $docker_version ..."
 Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
 $ErrorActionStop = 'SilentlyContinue'
-Install-Package -Name docker -ProviderName DockerProvider -RequiredVersion $docker_version -Force
+Install-Package -Name docker -ProviderName $docker_provider -RequiredVersion $docker_version -Force
 Set-PSRepository -InstallationPolicy Untrusted -Name PSGallery
 
 Write-Host Pulling latest images
-docker pull microsoft/windowsservercore:1709
-docker pull microsoft/nanoserver:1709
+docker pull microsoft/windowsservercore:1803
+docker pull microsoft/nanoserver:1803
 
 Write-Host Open Swarm-mode ports
 New-NetFirewallRule -Protocol TCP -LocalPort 2377 -Direction Inbound -Action Allow -DisplayName "Docker swarm-mode cluster management TCP"
@@ -62,45 +62,50 @@ Start-Service docker
 Write-Host Disable autologon
 New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogon -PropertyType DWORD -Value "0" -Force
 
-Write-Host "Downloading OpenSSH"
-Invoke-WebRequest "https://github.com/PowerShell/Win32-OpenSSH/releases/download/v0.0.19.0/OpenSSH-Win64.zip" -OutFile OpenSSH-Win64.zip -UseBasicParsing
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-Write-Host "Expanding OpenSSH"
+Write-Output "Downloading OpenSSH"
+Invoke-WebRequest "https://github.com/PowerShell/Win32-OpenSSH/releases/download/v7.7.1.0p1-Beta/OpenSSH-Win64.zip" -OutFile OpenSSH-Win64.zip -UseBasicParsing
+
+Write-Output "Expanding OpenSSH"
 Expand-Archive OpenSSH-Win64.zip C:\
 Remove-Item -Force OpenSSH-Win64.zip
 
-Write-Host "Disabling password authentication"
-Add-Content C:\OpenSSH-Win64\sshd_config "`nPasswordAuthentication no"
+Write-Output "Disabling password authentication"
+# Add-Content C:\OpenSSH-Win64\sshd_config "`nPasswordAuthentication no"
 Add-Content C:\OpenSSH-Win64\sshd_config "`nUseDNS no"
 
 Push-Location C:\OpenSSH-Win64
 
-Write-Host "Installing OpenSSH"
+Write-Output "Installing OpenSSH"
 & .\install-sshd.ps1
 
-Write-Host "Installing OpenSSH key auth"
-& .\install-sshlsa.ps1
-
-Write-Host "Generating host keys"
+Write-Output "Generating host keys"
 .\ssh-keygen.exe -A
+
+Write-Output "Fixing host file permissions"
+& .\FixHostFilePermissions.ps1 -Confirm:$false
+
+Write-Output "Fixing user file permissions"
+& .\FixUserFilePermissions.ps1 -Confirm:$false
 
 Pop-Location
 
 $newPath = 'C:\OpenSSH-Win64;' + [Environment]::GetEnvironmentVariable("PATH", [EnvironmentVariableTarget]::Machine)
 [Environment]::SetEnvironmentVariable("PATH", $newPath, [EnvironmentVariableTarget]::Machine)
 
-Write-Host "Adding public key to authorized_keys"
+Write-Output "Adding public key to authorized_keys"
 $keyPath = "~\.ssh\authorized_keys"
 New-Item -Type Directory ~\.ssh > $null
 $sshKey | Out-File $keyPath -Encoding Ascii
 
-Write-Host "Opening firewall port 22"
+Write-Output "Opening firewall port 22"
 New-NetFirewallRule -Protocol TCP -LocalPort 22 -Direction Inbound -Action Allow -DisplayName SSH
 
-Write-Host "Setting sshd service startup type to 'Automatic'"
+Write-Output "Setting sshd service startup type to 'Automatic'"
 Set-Service sshd -StartupType Automatic
 Set-Service ssh-agent -StartupType Automatic
-Write-Host "Setting sshd service restart behavior"
+Write-Output "Setting sshd service restart behavior"
 sc.exe failure sshd reset= 86400 actions= restart/500
 
 Write-Host Cleaning up
